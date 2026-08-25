@@ -1,8 +1,8 @@
 package main
 
-import "fmt"
 import (
 	"context"
+	"fmt"
 	"log"
 	"log/slog"
 	"net/http"
@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/Samir-khan786/student-api/internal/config"
+	"github.com/Samir-khan786/student-api/internal/http/handlers/student"
 )
 
 func main() {
@@ -22,9 +23,7 @@ func main() {
 	// setup router
 	router := http.NewServeMux()
 
-	router.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("welcome to students api"))
-	})
+	router.HandleFunc("POST /api/students", student.New())
 	// setup server
 
 	server := http.Server{
